@@ -1088,7 +1088,7 @@ const fp = flatpickr(mDates, {
 عدد الليالي: ${bookingData.nights}
 الإجمالي: ${bookingData.total}$`;
 
-            window.location.href = `https://wa.me/${HOTEL_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+           window.location.href = `https://api.whatsapp.com/send?phone=${HOTEL_WHATSAPP}&text=${encodeURIComponent(msg)}`;
 
 
 
@@ -1100,7 +1100,8 @@ const fp = flatpickr(mDates, {
             const restaurantBookBtn = document.getElementById("restaurantBookBtn");
             restaurantBookBtn.addEventListener("click", () => {
                 const msg = "مرحبا، أرغب بحجز طاولة في مطعم فندق كمفورت (حجز محلي – جيبوتي).";
-           window.location.href = `https://wa.me/${REST_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+         window.location.href = `https://api.whatsapp.com/send?phone=${REST_WHATSAPP}&text=${encodeURIComponent(msg)}`;
+
 
 
 

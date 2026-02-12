@@ -926,7 +926,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             /* ========= SETTINGS ========= */
            const HOTEL_WHATSAPP = "25377088843"; // <-- ضع رقم الفندق هنا بدون +
-           const REST_WHATSAPP = "25377088843"; // <-- ضع رقم المطعم (محلي جيبوتي) هنا بدون +
+          const REST_WHATSAPP = "25377088843"; // <-- ضع رقم المطعم (محلي جيبوتي) هنا بدون +
 
             /* ========= BOOKING MODAL ========= */
             const bookingModal = document.getElementById("bookingModal");
@@ -1088,7 +1088,8 @@ const fp = flatpickr(mDates, {
 عدد الليالي: ${bookingData.nights}
 الإجمالي: ${bookingData.total}$`;
 
-             window.open(`https://api.whatsapp.com/send?phone=${HOTEL_WHATSAPP}&text=${encodeURIComponent(msg)}`, "_blank");
+            window.location.href = `https://wa.me/${HOTEL_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+
 
 
 
@@ -1099,7 +1100,8 @@ const fp = flatpickr(mDates, {
             const restaurantBookBtn = document.getElementById("restaurantBookBtn");
             restaurantBookBtn.addEventListener("click", () => {
                 const msg = "مرحبا، أرغب بحجز طاولة في مطعم فندق كمفورت (حجز محلي – جيبوتي).";
-            window.open(`https://api.whatsapp.com/send?phone=${REST_WHATSAPP}&text=${encodeURIComponent(msg)}`, "_blank");
+           window.location.href = `https://wa.me/${REST_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+
 
 
 

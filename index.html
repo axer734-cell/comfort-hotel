@@ -65,18 +65,21 @@
         }
 
         .hero video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover
-        }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
-        .hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, .45)
-        }
 
+        .hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
         .brand {
             position: absolute;
             top: 18px;
@@ -870,7 +873,7 @@
 
                     <div class="field">
                         <label>رقم الهاتف (اتصال أو واتساب)</label>
-                        <input class="input" id="mPhone" inputmode="tel" placeholder="+253 77088843">
+                        <input class="input" id="mPhone" inputmode="tel" placeholder="+253 7708843">
                     </div>
                 </div>
 
@@ -921,8 +924,8 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             /* ========= SETTINGS ========= */
-            const HOTEL_WHATSAPP = "25377088843"; // <-- ضع رقم الفندق هنا بدون +
-            const REST_WHATSAPP = "25377088843"; // <-- ضع رقم المطعم (محلي جيبوتي) هنا بدون +
+           const HOTEL_WHATSAPP = "25377088843"; // <-- ضع رقم الفندق هنا بدون +
+           const REST_WHATSAPP = "25377088843"; // <-- ضع رقم المطعم (محلي جيبوتي) هنا بدون +
 
             /* ========= BOOKING MODAL ========= */
             const bookingModal = document.getElementById("bookingModal");

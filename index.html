@@ -644,7 +644,8 @@
 
     <!-- 1) HERO (واجهة) -->
     <section class="hero" id="hero">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline preload="metadata">
+
             <source src="comfort.mp4" type="video/mp4">
         </video>
 
@@ -1015,35 +1016,46 @@
                 normalizePhoneWithCode(code);
             });
 
-            // Flatpickr inside modal (Arabic, range, prevent past)
-            const fp = flatpickr(mDates, {
-                mode: "range",
-                minDate: "today",
-                locale: "ar",
-                dateFormat: "Y-m-d",
-                showMonths: 2,
-                onChange: (dates) => {
-                    if (dates.length === 2) {
-                        const nights = Math.round((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
-                        const total = nights * activeRoom.price;
-                        bookingData = {
-                            checkin: dates[0].toISOString().split("T")[0],
-                            checkout: dates[1].toISOString().split("T")[0],
-                            nights,
-                            total
-                        };
-                        mTotalText.textContent = `${total}$ ( ${nights} ليلة )`;
-                    } else {
-                        bookingData = {
-                            checkin: "",
-                            checkout: "",
-                            nights: 0,
-                            total: 0
-                        };
-                        mTotalText.textContent = "—";
-                    }
-                }
-            });
+           // Flatpickr inside modal (Arabic, range, prevent past)
+
+flatpickr.localize(flatpickr.l10ns.ar);
+
+const fp = flatpickr(mDates, {
+    mode: "range",
+    minDate: "today",
+    dateFormat: "Y-m-d",
+
+    // مهم للجوال
+  showMonths: 1,
+
+    disableMobile: true,
+
+    onChange: (dates) => {
+        if (dates.length === 2) {
+            const nights = Math.round((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
+            const total = nights * activeRoom.price;
+
+            bookingData = {
+                checkin: dates[0].toISOString().split("T")[0],
+                checkout: dates[1].toISOString().split("T")[0],
+                nights,
+                total
+            };
+
+            mTotalText.textContent = `${total}$ ( ${nights} ليلة )`;
+        } else {
+            bookingData = {
+                checkin: "",
+                checkout: "",
+                nights: 0,
+                total: 0
+            };
+
+            mTotalText.textContent = "—";
+        }
+    }
+});
+
 
             // Send to WhatsApp
             mSendBtn.addEventListener("click", () => {
@@ -1076,7 +1088,10 @@
 عدد الليالي: ${bookingData.nights}
 الإجمالي: ${bookingData.total}$`;
 
-                window.open(`https://wa.me/${HOTEL_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+             window.open(`https://api.whatsapp.com/send?phone=${HOTEL_WHATSAPP}&text=${encodeURIComponent(msg)}`, "_blank");
+
+
+
                 closeBooking();
             });
 
@@ -1084,7 +1099,10 @@
             const restaurantBookBtn = document.getElementById("restaurantBookBtn");
             restaurantBookBtn.addEventListener("click", () => {
                 const msg = "مرحبا، أرغب بحجز طاولة في مطعم فندق كمفورت (حجز محلي – جيبوتي).";
-                window.open(`https://wa.me/${REST_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+            window.open(`https://api.whatsapp.com/send?phone=${REST_WHATSAPP}&text=${encodeURIComponent(msg)}`, "_blank");
+
+
+
             });
 
             /* ========= LIGHTBOX (Zoom only, no drag, no wrap, arrows hide, preload) ========= */

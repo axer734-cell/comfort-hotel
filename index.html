@@ -927,6 +927,8 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            document.addEventListener("submit", e => e.preventDefault());
+
             /* ========= SETTINGS ========= */
             const HOTEL_WHATSAPP = "25377088843"; // <-- ضع رقم الفندق هنا بدون +
             const REST_WHATSAPP = "25377088843"; // <-- ضع رقم المطعم (محلي جيبوتي) هنا بدون +
@@ -1066,7 +1068,8 @@
             }
 
             // Send to WhatsApp
-            mSendBtn.addEventListener("click", () => {
+           mSendBtn.addEventListener("click", (e) => {
+    e.preventDefault();
                 const name = (mName.value || "").trim();
                 const passport = (mPassport.value || "").trim();
                 const country = (mCountry.value || "").trim();

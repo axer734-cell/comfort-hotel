@@ -920,7 +920,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ar.js"></script>
 
@@ -1023,7 +1023,7 @@
 
             if (typeof flatpickr !== "undefined") {
 
-                flatpickr.localize(flatpickr.l10ns.ar);
+              
 
                 flatpickr(mDates, {
                     mode: "range",
@@ -1035,7 +1035,7 @@
                     clickOpens: true,
 allowInput: false,
 
-                    locale: "ar",
+                   
                     onChange: (dates) => {
                         if (dates.length === 2) {
                             const nights = Math.round((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));

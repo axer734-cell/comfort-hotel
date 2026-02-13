@@ -983,8 +983,11 @@
             // Close handlers
             modalClose.addEventListener("click", closeBooking);
             bookingModal.addEventListener("click", (e) => {
-                if (e.target === bookingModal) closeBooking();
-            });
+    if (e.target === bookingModal && !document.querySelector(".flatpickr-calendar.open")) {
+        closeBooking();
+    }
+});
+
             window.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") {
                     if (bookingModal.classList.contains("open")) closeBooking();

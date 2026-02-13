@@ -1025,15 +1025,17 @@
 
               
 
-                flatpickr(mDates, {
-                    mode: "range",
-                    minDate: "today",
-                    dateFormat: "Y-m-d",
-                    showMonths: window.innerWidth > 768 ? 2 : 1,
-                  disableMobile: false,
-
-                    clickOpens: true,
-allowInput: false,
+               flatpickr(mDates, {
+    appendTo: document.body,
+    position: "auto center",
+    static: false,
+    mode: "range",
+    minDate: "today",
+    dateFormat: "Y-m-d",
+    showMonths: 1,
+    disableMobile: false,
+    clickOpens: true,
+    allowInput: false,
 
                    
                     onChange: (dates) => {

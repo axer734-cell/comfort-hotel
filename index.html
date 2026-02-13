@@ -835,9 +835,9 @@
 
             <div class="modal-body">
                 <div class="field">
-    <label>اسم الغرفة</label>
-    <input class="input" id="mRoomName" readonly>
-</div>
+                    <label>اسم الغرفة</label>
+                    <input class="input" id="mRoomName" readonly>
+                </div>
 
 
                 <div class="row">
@@ -881,7 +881,7 @@
 
                 <div class="field">
                     <label>تسجيل الوصول — المغادرة</label>
-                    <input class="input" id="mDates"  placeholder="اختر التواريخ">
+                    <input class="input" id="mDates" placeholder="اختر التواريخ">
                 </div>
 
                 <div class="total-line" id="mTotalLine">
@@ -920,9 +920,9 @@
     </div>
 
     <!-- Scripts -->
-   <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
 
-   <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ar.js"></script>
 
 
     <script>
@@ -1021,40 +1021,46 @@
 
             // Flatpickr inside modal (Arabic, range, prevent past)
 
-          if (typeof flatpickr !== "undefined") {
+            if (typeof flatpickr !== "undefined") {
 
-    flatpickr.localize(flatpickr.l10ns.ar);
+                flatpickr.localize(flatpickr.l10ns.ar);
 
-   flatpickr(mDates, {
-    mode: "range",
-    minDate: "today",
-    dateFormat: "Y-m-d",
-    showMonths: 1,
-    disableMobile: true,
-    locale: "ar",
-    onChange: (dates) => {
-        if (dates.length === 2) {
-            const nights = Math.round((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
-            const total = nights * activeRoom.price;
+                flatpickr(mDates, {
+                    mode: "range",
+                    minDate: "today",
+                    dateFormat: "Y-m-d",
+                    showMonths: 1,
+                    disableMobile: true,
+                    clickOpens: true,
+allowInput: false,
 
-            bookingData = {
-                checkin: dates[0].toISOString().split("T")[0],
-                checkout: dates[1].toISOString().split("T")[0],
-                nights,
-                total
-            };
+                    locale: "ar",
+                    onChange: (dates) => {
+                        if (dates.length === 2) {
+                            const nights = Math.round((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
+                            const total = nights * activeRoom.price;
 
-            mTotalText.textContent = `${total}$ ( ${nights} ليلة )`;
-        } else {
-            bookingData = { checkin:"", checkout:"", nights:0, total:0 };
-            mTotalText.textContent = "—";
-        }
-    }
-});
+                            bookingData = {
+                                checkin: dates[0].toISOString().split("T")[0],
+                                checkout: dates[1].toISOString().split("T")[0],
+                                nights,
+                                total
+                            };
 
+                            mTotalText.textContent = `${total}$ ( ${nights} ليلة )`;
+                        } else {
+                            bookingData = {
+                                checkin: "",
+                                checkout: "",
+                                nights: 0,
+                                total: 0
+                            };
+                            mTotalText.textContent = "—";
+                        }
+                    }
+                });
 
-}
-
+            }
 
             // Send to WhatsApp
             mSendBtn.addEventListener("click", () => {
@@ -1086,9 +1092,15 @@
 المغادرة: ${bookingData.checkout}
 عدد الليالي: ${bookingData.nights}
 الإجمالي: ${bookingData.total}$`;
+const url = `https://wa.me/${HOTEL_WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
-           window.open(`https://wa.me/${HOTEL_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
 
+const a = document.createElement("a");
+a.href = url;
+a.target = "_self";   // مهم جداً للأندرويد
+document.body.appendChild(a);
+a.click();
+a.remove();
 
 
                 closeBooking();
@@ -1098,9 +1110,14 @@
             const restaurantBookBtn = document.getElementById("restaurantBookBtn");
             restaurantBookBtn.addEventListener("click", () => {
                 const msg = "مرحبا، أرغب بحجز طاولة في مطعم فندق كمفورت (حجز محلي – جيبوتي).";
-         window.open(`https://wa.me/${REST_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+           const url = `https://wa.me/${REST_WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
-
+const a = document.createElement("a");
+a.href = url;
+a.target = "_self";
+document.body.appendChild(a);
+a.click();
+a.remove();
 
 
             });

@@ -58,12 +58,6 @@
         }
 
         /* ===== HERO ===== */
-        .hero {
-            height: 100vh;
-            position: relative;
-            overflow: hidden
-        }
-
         .hero video {
             width: 100%;
             height: 100%;
@@ -75,14 +69,10 @@
 
        .hero {
     min-height: 100vh;
-    height: auto;
+    position: relative;
+    overflow: hidden;
+    background: #000;
 }
-
-            position: relative;
-            overflow: hidden;
-            background: #000;
-        }
-
         .brand {
             position: absolute;
             top: 18px;
@@ -924,8 +914,7 @@
     </div>
 
     <!-- Scripts -->
-    
-
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ar.js"></script>
 
 
@@ -986,11 +975,12 @@
 
             // Close handlers
             modalClose.addEventListener("click", closeBooking);
-            bookingModal.addEventListener("click", (e) => {
-    if (e.target === bookingModal && !document.querySelector(".flatpickr-calendar.open")) {
+           bookingModal.addEventListener("click", (e) => {
+    if (e.target === bookingModal) {
         closeBooking();
     }
 });
+
 
             window.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") {
@@ -1040,10 +1030,11 @@
     minDate: "today",
     dateFormat: "Y-m-d",
     showMonths: 1,
-    disableMobile: false,
+    disableMobile: true,   // ← مهم جداً
     clickOpens: true,
     allowInput: false,
     locale: "ar",
+
 
     onChange: (dates) => {
         if (dates.length === 2) {

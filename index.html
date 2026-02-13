@@ -1029,8 +1029,9 @@
                     mode: "range",
                     minDate: "today",
                     dateFormat: "Y-m-d",
-                    showMonths: 1,
-                    disableMobile: true,
+                    showMonths: window.innerWidth > 768 ? 2 : 1,
+                  disableMobile: false,
+
                     clickOpens: true,
 allowInput: false,
 

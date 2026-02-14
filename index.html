@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl">123
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -7,178 +8,357 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- ✅ Flatpickr CSS (OK) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
 
   <style>
-    :root{
-      --gold:#c9a14a;
-      --gold2:#b08d3c;
-      --dark:#1f1f1f;
-      --border:#e5e7e6;
-      --bg:#f7f8f7;
-      --card:#ffffff;
-      --muted:#7a7a7a;
+    :root {
+      --gold: #c9a14a;
+      --gold2: #b08d3c;
+      --dark: #1f1f1f;
+      --border: #e5e7e6;
+      --bg: #f7f8f7;
+      --card: #ffffff;
+      --muted: #7a7a7a;
     }
 
-    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    body{
-      margin:0;
-      font-family:'Cairo',sans-serif;
-      background:var(--bg);
-      color:var(--dark);
-      line-height:1.6;
-      overflow-x:hidden;
-    }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1200px;margin:0 auto;padding:0 16px}
-    main{padding:48px 0}
-
-    /* HERO */
-    .hero{height:100vh;position:relative;overflow:hidden;background:#000}
-    .hero video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
-    .brand{
-      position:absolute;top:18px;right:18px;z-index:3;
-      display:flex;align-items:center;gap:12px;
-      padding:8px 10px;border-radius:999px;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
-      backdrop-filter:blur(10px);
-    }
-    .brand img{width:48px;height:48px;border-radius:50%;background:#fff;padding:6px;object-fit:contain}
-    .brand .t{color:#fff;line-height:1.1}
-    .brand .t b{display:block;font-size:14px}
-    .brand .t span{display:block;font-size:12px;opacity:.9}
-    .hero-content{position:absolute;right:22px;bottom:34px;z-index:3;color:#fff}
-    .hero-content h1{margin:0;font-size:clamp(28px,5vw,38px);font-weight:800}
-    .hero-content h2{margin:6px 0 0;font-weight:600;font-size:14px;opacity:.95}
-    .hero-content .loc{margin-top:8px;font-size:13px;opacity:.95;display:flex;align-items:center;gap:6px}
-
-    /* Sections */
-    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-    .section-title h3{margin:0}
-    .section-title p{margin:0;color:var(--muted);font-size:13px}
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:18px;
-      overflow:hidden;
-      margin-bottom:22px;
-    }
-    .card-header{
-      padding:18px;
-      border-bottom:1px solid var(--border);
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:10px;
-    }
-    .price{color:var(--gold);font-weight:800;font-size:16px}
-
-    .book-bubble{
-      padding:12px 18px;border:none;border-radius:999px;
-      background:linear-gradient(135deg,var(--gold),var(--gold2));
-      color:#fff;font-weight:900;cursor:pointer;
-      display:inline-flex;align-items:center;gap:8px;
-      box-shadow:0 10px 20px rgba(201,161,74,.2);
-      transition:.2s;
-      white-space:nowrap;
-    }
-    .book-bubble:active{transform:scale(.98)}
-
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:14px;padding:16px;
-    }
-    .gallery img{
-      width:100%;height:200px;object-fit:cover;border-radius:14px;
-      cursor:zoom-in;transition:.2s;
-    }
-    .gallery img:hover{transform:scale(1.02)}
-
-    /* Services */
-    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
-    .service{
-      background:#fff;border:1px solid var(--border);
-      border-radius:16px;padding:18px 14px;text-align:center;
-    }
-    .service i{font-size:28px;color:var(--gold);display:block;margin-bottom:8px}
-
-    /* Modals */
-    .modal{
-      position:fixed;inset:0;z-index:9999;
-      display:none;align-items:center;justify-content:center;
-      background:rgba(0,0,0,.65);
-      padding:15px;
-      backdrop-filter:blur(4px);
-    }
-    .modal.open{display:flex}
-    .modal-box{
-      width:100%;
-      max-width:520px;
-      background:#fff;
-      border-radius:20px;
-      max-height:95vh;
-      overflow-y:auto;
-      position:relative;
-    }
-    .modal-head{
-      padding:16px;border-bottom:1px solid var(--border);
-      display:flex;justify-content:space-between;align-items:center;
-      position:sticky;top:0;background:#fff;z-index:2;
-    }
-    .modal-body{padding:20px}
-    .field{margin-bottom:15px}
-    .field label{display:block;font-size:13px;font-weight:800;color:#555;margin-bottom:6px}
-    .input,select,textarea{
-      width:100%;height:50px;border-radius:12px;border:1px solid #ddd;
-      padding:0 12px;font-size:14px;outline:none;font-family:'Cairo';
-      background:#fff;
-    }
-    textarea.input{height:auto;padding:12px}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .total-line{
-      padding:15px;background:#fafafa;border-radius:14px;
-      border:1px dashed var(--gold);
-      display:flex;justify-content:space-between;font-weight:900;margin:10px 0;
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .payment-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:5px}
-    .pay-card{
-      border:1px solid #ddd;border-radius:10px;padding:10px;text-align:center;
-      cursor:pointer;font-size:12px;font-weight:900;transition:.2s;
-      user-select:none;
-    }
-    .pay-card.active{
-      border-color:var(--gold);
-      background:#fffcf5;color:var(--gold);
-      box-shadow:0 4px 10px rgba(201,161,74,.1);
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    .send-btn{
-      width:100%;padding:16px;border:none;
-      background:linear-gradient(135deg,var(--gold),var(--gold2));
-      color:#fff;border-radius:999px;font-weight:900;cursor:pointer;font-size:16px;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
     }
 
-    /* Lightbox */
-    .lightbox{
-      position:fixed;inset:0;z-index:10000;
-      background:rgba(0,0,0,.9);
-      display:none;align-items:center;justify-content:center;
+    main {
+      padding: 48px 0;
     }
-    .lightbox.open{display:flex}
-    .lb-img{max-width:90%;max-height:80%;object-fit:contain}
 
-    /* ✅ أهم سطرين لضمان ظهور التقويم فوق المودال */
-    .flatpickr-calendar{z-index:100000 !important}
-    .flatpickr-months .flatpickr-month{height:auto}
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
 
-    @media (max-width:500px){
-      .row{grid-template-columns:1fr}
-      .payment-options{grid-template-columns:1fr 1fr}
+    .hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, .45);
+    }
+
+    .brand {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .18);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 6px;
+      object-fit: contain;
+    }
+
+    .brand .t {
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .brand .t b {
+      display: block;
+      font-size: 14px;
+    }
+
+    .hero-content {
+      position: absolute;
+      right: 22px;
+      bottom: 34px;
+      z-index: 3;
+      color: #fff;
+    }
+
+    .hero-content h1 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 38px);
+      font-weight: 700;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .card-header {
+      padding: 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .price {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .book-bubble {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 20px rgba(201, 161, 74, .2);
+      transition: 0.3s;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      padding: 16px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 14px;
+      cursor: zoom-in;
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.02);
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+    }
+
+    .service {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+
+    .service i {
+      font-size: 28px;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 15px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 520px;
+      background: #fff;
+      border-radius: 20px;
+      max-height: 95vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-head {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 2;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .input,
+    select,
+    textarea {
+      width: 100%;
+      height: 50px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      padding: 0 12px;
+      font-size: 14px;
+      outline: none;
+      font-family: 'Cairo';
+      background: #fff;
+    }
+
+    textarea.input {
+      height: auto;
+      padding: 12px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .total-line {
+      padding: 15px;
+      background: #fafafa;
+      border-radius: 14px;
+      border: 1px dashed var(--gold);
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      margin: 10px 0;
+    }
+
+    .payment-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .pay-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      transition: 0.2s;
+      user-select: none;
+    }
+
+    .pay-card.active {
+      border-color: var(--gold);
+      background: #fffcf5;
+      color: var(--gold);
+      box-shadow: 0 4px 10px rgba(201, 161, 74, 0.1);
+    }
+
+    .send-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #fff;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lb-img {
+      max-width: 90%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 500px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      .payment-options {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -189,12 +369,10 @@
     <video autoplay muted loop playsinline>
       <source src="comfort.mp4" type="video/mp4">
     </video>
-
     <div class="brand">
       <img src="comfotLOGO_11zon.jpg" alt="Logo">
       <div class="t"><b>Comfort Hotel</b><span>فندق كمفورت</span></div>
     </div>
-
     <div class="hero-content">
       <h1>فندق كمفورت</h1>
       <h2>Comfort Hotel – Djibouti City Center</h2>
@@ -204,7 +382,6 @@
 
   <main>
     <div class="container">
-
       <section id="rooms">
         <div class="section-title">
           <h3>الغرف</h3>
@@ -214,32 +391,26 @@
         <div class="card" data-room-name="غرفة ديلوكس – سرير ملكي" data-room-price="75">
           <div class="card-header">
             <div class="info">
-              <h4 style="margin:0">غرفة ديلوكس – سرير ملكي</h4>
-              <p style="margin:4px 0;color:var(--muted);font-size:13px">مناسبة للأفراد أو الأزواج – راحة وهدوء</p>
+              <h4>غرفة ديلوكس – سرير ملكي</h4>
+              <p style="margin:4px 0; color:var(--muted); font-size:13px">مناسبة للأفراد أو الأزواج – راحة وهدوء</p>
             </div>
-            <button class="book-bubble js-open-room" type="button"><i class="bi bi-calendar2-check"></i> احجز الآن</button>
+            <button class="book-bubble js-open-room"><i class="bi bi-calendar2-check"></i> احجز الآن</button>
           </div>
           <div class="gallery">
-            <img src="room1.jpg" alt="">
-            <img src="room2.jpg" alt="">
-            <img src="room-3.jpg" alt="">
-            <img src="room-4.jpg" alt="">
+            <img src="room1.jpg"> <img src="room2.jpg"> <img src="room-3.jpg"> <img src="room-4.jpg">
           </div>
         </div>
 
         <div class="card" data-room-name="غرفة ديلوكس – سريرين" data-room-price="75">
           <div class="card-header">
             <div class="info">
-              <h4 style="margin:0">غرفة ديلوكس – سريرين</h4>
-              <p style="margin:4px 0;color:var(--muted);font-size:13px">مناسبة للأصدقاء أو العائلة</p>
+              <h4>غرفة ديلوكس – سريرين</h4>
+              <p style="margin:4px 0; color:var(--muted); font-size:13px">مناسبة للأصدقاء أو العائلة</p>
             </div>
-            <button class="book-bubble js-open-room" type="button"><i class="bi bi-calendar2-check"></i> احجز الآن</button>
+            <button class="book-bubble js-open-room"><i class="bi bi-calendar2-check"></i> احجز الآن</button>
           </div>
           <div class="gallery">
-            <img src="room-photo1.jpg" alt="">
-            <img src="room-photo2.jpg" alt="">
-            <img src="room-photo3.jpg" alt="">
-            <img src="room-photo4.jpg" alt="">
+            <img src="room-photo1.jpg"> <img src="room-photo2.jpg"> <img src="room-photo3.jpg"> <img src="room-photo4.jpg">
           </div>
         </div>
       </section>
@@ -252,16 +423,15 @@
         <div class="card">
           <div class="card-header">
             <div class="info">
-              <h4 style="margin:0">مطعم الفندق</h4>
-              <p style="margin:4px 0;color:var(--muted);font-size:13px">أشهى المأكولات الجيبوتية واليمنية</p>
+              <h4>مطعم الفندق</h4>
+              <p style="margin:4px 0; color:var(--muted); font-size:13px">أشهى المأكولات الجيبوتية واليمنية</p>
             </div>
-            <button class="book-bubble" id="openRestBtn" type="button"><i class="bi bi-whatsapp"></i> حجز طاولة / وجبات</button>
+
+            <!-- ✅ نفس زرّك كما هو -->
+            <button class="book-bubble" id="openRestBtn"><i class="bi bi-whatsapp"></i> حجز طاولة / وجبات</button>
           </div>
           <div class="gallery">
-            <img src="Restaurant1.jpg" alt="">
-            <img src="Restaurant2.jpg" alt="">
-            <img src="Restaurant3.jpg" alt="">
-            <img src="Restaurant4.jpg" alt="">
+            <img src="Restaurant1.jpg"> <img src="Restaurant2.jpg"> <img src="Restaurant3.jpg"> <img src="Restaurant4.jpg">
           </div>
         </div>
       </section>
@@ -277,8 +447,7 @@
                 <circle cx="12" cy="13" r="4"></circle>
                 <line x1="7" y1="6" x2="17" y2="6"></line>
               </svg>
-            </i>
-            <span>مغسلة</span>
+            </i><span>مغسلة</span>
           </div>
           <div class="service">
             <i>
@@ -286,100 +455,72 @@
                 <path d="M4 14h16l-2 5H6l-2-5Z"></path>
                 <path d="M8 10c0-2 2-3 4-3s4 1 4 3"></path>
               </svg>
-            </i>
-            <span>كاوية</span>
+            </i><span>كاوية</span>
           </div>
         </div>
       </section>
 
       <section style="margin-top:40px">
         <div class="card" style="padding:14px">
-          <iframe style="width:100%;height:260px;border:0;border-radius:14px;"
-                  src="https://www.google.com/maps/embed?pb=..."
-                  loading="lazy"></iframe>
-          <div style="display:flex;justify-content:flex-end;margin-top:12px">
-            <a href="https://www.google.com/maps?q=Comfort%20Hotel%20Djibouti"
-               target="_blank" rel="noopener"
-               style="background:#111;color:#fff;padding:12px 20px;border-radius:999px;font-weight:900;display:inline-flex;align-items:center;gap:8px">
+          <iframe style="width:100%; height:260px; border:0; border-radius:14px;" src="https://www.google.com/maps/embed?pb=..."></iframe>
+          <div style="display:flex; justify-content:flex-end; margin-top:12px">
+            <a href="#" target="_blank"
+              style="background:#111; color:#fff; padding:12px 20px; border-radius:999px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:8px;">
               <i class="bi bi-geo-alt"></i> الذهاب للموقع
             </a>
           </div>
         </div>
       </section>
-
     </div>
   </main>
 
-  <footer style="text-align:center;padding:30px;color:var(--muted);font-size:13px;">
-    © 2026 Comfort Hotel – Djibouti
+  <footer style="text-align:center; padding:30px; color:var(--muted); font-size:13px;">© 2026 Comfort Hotel – Djibouti
   </footer>
 
-  <!-- Room Modal -->
-  <div class="modal" id="roomModal" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true">
+  <div class="modal" id="roomModal">
+    <div class="modal-box">
       <div class="modal-head">
         <b>نموذج حجز الغرف</b>
-        <button id="closeRoomModalBtn" type="button"
-                style="border:none;background:#eee;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:18px;">×</button>
+        <button onclick="closeModal('roomModal')"
+          style="border:none; background:#eee; border-radius:50%; width:32px; height:32px; cursor:pointer;">×</button>
       </div>
       <div class="modal-body">
-        <div class="field">
-          <label>الغرفة المختارة</label>
-          <input class="input" id="mRoomName" readonly style="background:#f9f9f9">
-        </div>
-
+        <div class="field"><label>الغرفة المختارة</label><input class="input" id="mRoomName" readonly
+            style="background:#f9f9f9"></div>
         <div class="row">
-          <div class="field">
-            <label>الاسم الكامل</label>
-            <input class="input" id="mName" placeholder="الاسم الكامل">
-          </div>
-          <div class="field">
-            <label>رقم الجواز</label>
-            <input class="input" id="mPassport" placeholder="رقم الجواز">
-          </div>
+          <div class="field"><label>الاسم الكامل</label><input class="input" id="mName"
+              placeholder="سيتم حفظ اسمك تلقائياً"></div>
+          <div class="field"><label>رقم الجواز</label><input class="input" id="mPassport" placeholder="رقم الجواز"></div>
         </div>
-
         <div class="row">
           <div class="field">
             <label>الدولة</label>
             <select id="mCountry" class="input">
-              <option value="Djibouti" data-code="+253">Djibouti (+253)</option>
-              <option value="Yemen" data-code="+967">Yemen (+967)</option>
-              <option value="Saudi Arabia" data-code="+966">Saudi Arabia (+966)</option>
-              <option value="Ethiopia" data-code="+251">Ethiopia (+251)</option>
-              <option value="Other" data-code="">أخرى</option>
+              <option value="Djibouti">Djibouti (+253)</option>
+              <option value="Yemen">Yemen (+967)</option>
+              <option value="Saudi Arabia">Saudi Arabia (+966)</option>
+              <option value="Ethiopia">Ethiopia (+251)</option>
+              <option value="Other">أخرى</option>
             </select>
           </div>
-          <div class="field">
-            <label>رقم الهاتف</label>
-            <input class="input" id="mPhone" type="tel" placeholder="+253 7708843">
-          </div>
+          <div class="field"><label>رقم الهاتف</label><input class="input" id="mPhone" type="tel"
+              placeholder="رقم التواصل"></div>
         </div>
-
-        <div class="field">
-          <label>التواريخ (وصول - مغادرة)</label>
-          <input class="input" id="mDates" readonly placeholder="حدد فترة الإقامة" style="cursor:pointer">
+        <div class="field"><label>التواريخ (وصول - مغادرة)</label><input class="input" id="mDates" readonly
+            placeholder="حدد فترة الإقامة"></div>
+        <div class="total-line"><span>الإجمالي المقدر:</span><span id="mTotalText" style="color:var(--gold)">—</span>
         </div>
-
-        <div class="total-line">
-          <span>الإجمالي المقدر:</span>
-          <span id="mTotalText" style="color:var(--gold)">—</span>
-        </div>
-
-        <button class="send-btn" id="sendRoomBooking" type="button">
-          <i class="bi bi-whatsapp"></i> إرسال الحجز عبر واتساب
-        </button>
+        <button class="send-btn" id="sendRoomBooking"><i class="bi bi-whatsapp"></i> إرسال الحجز عبر واتساب</button>
       </div>
     </div>
   </div>
 
-  <!-- Restaurant Modal -->
-  <div class="modal" id="restModal" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true">
+  <div class="modal" id="restModal">
+    <div class="modal-box">
       <div class="modal-head">
         <b>طلب المطعم (حجز محلي)</b>
-        <button id="closeRestModalBtn" type="button"
-                style="border:none;background:#eee;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:18px;">×</button>
+        <button onclick="closeModal('restModal')"
+          style="border:none; background:#eee; border-radius:50%; width:32px; height:32px; cursor:pointer;">×</button>
       </div>
       <div class="modal-body">
         <div class="field">
@@ -392,16 +533,14 @@
             <option value="5+">عائلة (5+)</option>
           </select>
         </div>
-
         <div class="field">
           <label>الوجبات المطلوبة</label>
           <textarea class="input" id="rOrders" rows="3" placeholder="مثلاً: 2 مندي، 1 سمك، ماء..."></textarea>
-          <button id="viewCatalogBtn" type="button"
-                  style="background:#f0f0f0;border:1px dashed var(--gold);color:var(--gold);padding:10px;border-radius:10px;width:100%;cursor:pointer;font-weight:900;margin-top:8px;">
+          <button id="viewCatalogBtn"
+            style="background:#f0f0f0; border:1px dashed var(--gold); color:var(--gold); padding:10px; border-radius:10px; width:100%; cursor:pointer; font-weight:700; margin-top:8px;">
             <i class="bi bi-book"></i> عرض الكتالوج (قائمة الطعام)
           </button>
         </div>
-
         <div class="field">
           <label>طريقة الدفع المحلية</label>
           <div class="payment-options">
@@ -410,215 +549,182 @@
             <div class="pay-card" data-pay="CAC Bay">CAC Bay</div>
           </div>
         </div>
-
-        <button class="send-btn" id="sendRestBooking" type="button">
-          <i class="bi bi-whatsapp"></i> تأكيد الطلب عبر واتساب
-        </button>
+        <button class="send-btn" id="sendRestBooking"><i class="bi bi-whatsapp"></i> تأكيد الطلب عبر واتساب</button>
       </div>
     </div>
   </div>
 
-  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
-    <img class="lb-img" id="lbImg" alt="">
+    <img class="lb-img" id="lbImg">
   </div>
 
+  <!-- ✅ Flatpickr JS الصحيح (هنا الحل) -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ar.js"></script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const WHATSAPP_NUMBER = "25377088843"; // رقم الفندق
-      let activeRoomPrice = 75;
+    const WHATSAPP_NUMBER = "25377088843"; // رقم الفندق الموحد
+    let activeRoomPrice = 75;
+    let bookingInfo = { nights: 0, total: 0, checkin: "", checkout: "" };
 
-      const roomModal = document.getElementById("roomModal");
-      const restModal = document.getElementById("restModal");
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-      const mRoomName = document.getElementById("mRoomName");
-      const mName = document.getElementById("mName");
-      const mPassport = document.getElementById("mPassport");
-      const mCountry = document.getElementById("mCountry");
-      const mPhone = document.getElementById("mPhone");
-      const mDates = document.getElementById("mDates");
-      const mTotalText = document.getElementById("mTotalText");
+    // ✅ فتح واتساب “مضمون” على GitHub Pages + الجوال
+    function goWhatsApp(text) {
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
-      let bookingInfo = { nights:0, total:0, checkin:"", checkout:"" };
+      // 1) الأفضل: نفس الصفحة (لا يتأثر بحظر popups)
+      try {
+        window.location.href = url;
+        return;
+      } catch (e) { }
 
-      function openModal(el){
-        el.classList.add("open");
-        el.setAttribute("aria-hidden","false");
-      }
-      function closeModal(el){
-        el.classList.remove("open");
-        el.setAttribute("aria-hidden","true");
-      }
+      // 2) fallback: نافذة جديدة
+      try {
+        window.open(url, "_blank", "noopener");
+        return;
+      } catch (e) { }
 
-      // اغلاق بالزر + بالضغط على الخلفية
-      document.getElementById("closeRoomModalBtn").addEventListener("click", ()=>closeModal(roomModal));
-      document.getElementById("closeRestModalBtn").addEventListener("click", ()=>closeModal(restModal));
-      roomModal.addEventListener("click", (e)=>{ if(e.target === roomModal) closeModal(roomModal); });
-      restModal.addEventListener("click", (e)=>{ if(e.target === restModal) closeModal(restModal); });
+      // 3) fallback: رابط
+      const a = document.createElement("a");
+      a.href = url;
+      a.target = "_self";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
 
-      // حفظ تلقائي (اختياري)
-      const userFields = ["mName","mPassport","mPhone","mCountry"];
-      userFields.forEach(id=>{
-        const el = document.getElementById(id);
-        const saved = localStorage.getItem(id);
-        if(saved !== null && saved !== undefined && saved !== "") el.value = saved;
-        el.addEventListener("input", (e)=>localStorage.setItem(id, e.target.value));
-        el.addEventListener("change", (e)=>localStorage.setItem(id, e.target.value));
-      });
+    // --- حفظ البيانات تلقائياً ---
+    const userFields = ['mName', 'mPassport', 'mPhone', 'mCountry'];
+    userFields.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const savedValue = localStorage.getItem(id);
+      if (savedValue) el.value = savedValue;
+      el.addEventListener('input', (e) => localStorage.setItem(id, e.target.value));
+      el.addEventListener('change', (e) => localStorage.setItem(id, e.target.value));
+    });
 
-      // دولة -> إضافة مفتاح للدخول (اختياري)
-      function normalizePhoneWithCode(code){
-        const raw = (mPhone.value || "").trim();
-        const rest = raw.replace(/^\+\d+\s*/, "").trim();
-        if(code){
-          mPhone.value = code + " " + rest;
-        }
-      }
-      mCountry.addEventListener("change", ()=>{
-        const opt = mCountry.options[mCountry.selectedIndex];
-        normalizePhoneWithCode(opt?.dataset?.code || "");
-      });
+    // --- فتح مودال الغرف ---
+    document.querySelectorAll(".js-open-room").forEach(btn => {
+      btn.onclick = () => {
+        const card = btn.closest(".card");
+        document.getElementById("mRoomName").value = card.dataset.roomName;
+        activeRoomPrice = parseInt(card.dataset.roomPrice || "75", 10);
+        openModal('roomModal');
+      };
+    });
 
-      // فتح مودال الغرف
-      document.querySelectorAll(".js-open-room").forEach(btn=>{
-        btn.addEventListener("click", ()=>{
-          const card = btn.closest(".card");
-          mRoomName.value = card.dataset.roomName || "";
-          activeRoomPrice = parseInt(card.dataset.roomPrice || "75", 10);
-
-          // إعادة التواريخ والحساب
-          bookingInfo = { nights:0, total:0, checkin:"", checkout:"" };
-          mTotalText.textContent = "—";
-          mDates.value = "";
-
-          openModal(roomModal);
-        });
-      });
-
-      // ✅ Flatpickr: إصلاح نهائي (بدون نصوص + فتح إجباري)
-      let fp = null;
-      if(typeof flatpickr !== "undefined"){
-        fp = flatpickr(mDates, {
+    // ✅ Flatpickr (مع حماية من أي خطأ حتى لا يوقف السكربت)
+    try {
+      if (window.flatpickr) {
+        flatpickr("#mDates", {
           mode: "range",
           minDate: "today",
-          dateFormat: "Y-m-d",
           locale: "ar",
-          disableMobile: true,      // ✅ لازم Boolean
-          clickOpens: true,
-          allowInput: false,
-
-          onChange: (selectedDates) => {
-            if(selectedDates.length === 2){
+          disableMobile: true,
+          dateFormat: "Y-m-d",
+          onChange: function (selectedDates) {
+            if (selectedDates.length === 2) {
               const diff = selectedDates[1] - selectedDates[0];
-              const nights = Math.ceil(diff / (1000*60*60*24));
+              const nights = Math.ceil(diff / (1000 * 60 * 60 * 24));
               bookingInfo = {
                 nights,
                 total: nights * activeRoomPrice,
-                checkin: selectedDates[0].toLocaleDateString("en-CA"),
-                checkout: selectedDates[1].toLocaleDateString("en-CA")
+                checkin: selectedDates[0].toLocaleDateString('en-CA'),
+                checkout: selectedDates[1].toLocaleDateString('en-CA')
               };
-              mTotalText.textContent = `${bookingInfo.total}$ ( ${nights} ليلة )`;
-            }else{
-              bookingInfo = { nights:0, total:0, checkin:"", checkout:"" };
-              mTotalText.textContent = "—";
+              document.getElementById("mTotalText").textContent =
+                bookingInfo.total + "$ (" + nights + " ليلة)";
+            } else {
+              bookingInfo = { nights: 0, total: 0, checkin: "", checkout: "" };
+              document.getElementById("mTotalText").textContent = "—";
             }
           }
         });
+      }
+    } catch (err) {
+      // لا نوقف أي شيء آخر
+      console.error("Flatpickr error:", err);
+    }
 
-        // ✅ في بعض الأجهزة readonly لا يفتح — نخليه يفتح بالقوة عند الضغط
-        mDates.addEventListener("click", ()=>{
-          if(fp) fp.open();
-        });
+    // --- إرسال حجز الغرفة ---
+    document.getElementById('sendRoomBooking').onclick = () => {
+      const name = document.getElementById("mName").value.trim();
+      const phone = document.getElementById("mPhone").value.trim();
+      const passport = document.getElementById("mPassport").value.trim();
+      const country = document.getElementById("mCountry").value.trim();
+
+      if (!name || !phone || !bookingInfo.checkin || !bookingInfo.checkout) {
+        return alert("يرجى إكمال الاسم + الهاتف + اختيار التواريخ");
       }
 
-      // إرسال حجز الغرفة
-      function openWhatsApp(text){
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-        const a = document.createElement("a");
-        a.href = url;
-        a.target = "_self"; // أفضل للجوال
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      }
-
-      document.getElementById("sendRoomBooking").addEventListener("click", ()=>{
-        const name = (mName.value || "").trim();
-        const phone = (mPhone.value || "").trim();
-        const passport = (mPassport.value || "").trim();
-        const country = (mCountry.value || "").trim();
-
-        if(!name || !phone) return alert("يرجى إدخال الاسم ورقم الهاتف");
-        if(!bookingInfo.checkin || !bookingInfo.checkout || bookingInfo.nights <= 0){
-          return alert("يرجى اختيار تواريخ الوصول والمغادرة");
-        }
-
-        const text =
-`حجز غرفة جديد - Comfort Hotel
+      const text =
+        `حجز غرفة جديد - Comfort Hotel
 --------------------------
 الاسم: ${name}
 الهاتف: ${phone}
 الدولة: ${country}
 الجواز: ${passport}
 
-الغرفة: ${mRoomName.value}
+الغرفة: ${document.getElementById("mRoomName").value}
 الوصول: ${bookingInfo.checkin}
 المغادرة: ${bookingInfo.checkout}
 المدة: ${bookingInfo.nights} ليالي
 الإجمالي: ${bookingInfo.total}$`;
 
-        openWhatsApp(text);
-        closeModal(roomModal);
-      });
+      goWhatsApp(text);
+    };
 
-      // المطعم
-      document.getElementById("openRestBtn").addEventListener("click", ()=>openModal(restModal));
+    // --- فتح مودال المطعم ---
+    const openRestBtn = document.getElementById('openRestBtn');
+    if (openRestBtn) openRestBtn.onclick = () => openModal('restModal');
 
-      document.querySelectorAll(".pay-card").forEach(card=>{
-        card.addEventListener("click", ()=>{
-          document.querySelectorAll(".pay-card").forEach(c=>c.classList.remove("active"));
-          card.classList.add("active");
-        });
-      });
+    // --- اختيار الدفع ---
+    document.querySelectorAll('.pay-card').forEach(card => {
+      card.onclick = () => {
+        document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      };
+    });
 
-      document.getElementById("sendRestBooking").addEventListener("click", ()=>{
-        const orders = (document.getElementById("rOrders").value || "").trim();
-        const payment = document.querySelector(".pay-card.active")?.innerText || "";
-        const people = document.getElementById("rPeople").value;
+    // --- إرسال طلب المطعم ---
+    document.getElementById('sendRestBooking').onclick = () => {
+      const orders = document.getElementById('rOrders').value.trim();
+      const payment = (document.querySelector('.pay-card.active')?.innerText || "").trim();
+      const people = document.getElementById('rPeople').value;
 
-        if(!orders) return alert("يرجى كتابة الوجبات");
+      if (!orders) return alert("يرجى كتابة الوجبات");
 
-        const text =
-`طلب مطعم (محلي) - Comfort Hotel
+      const text =
+        `طلب مطعم (محلي) - Comfort Hotel
 --------------------------
 عدد الأشخاص: ${people}
 الوجبات: ${orders}
 طريقة الدفع: ${payment}`;
 
-        openWhatsApp(text);
-        closeModal(restModal);
-      });
+      goWhatsApp(text);
+    };
 
-      // كتالوج + لايت بوكس
-      const lb = document.getElementById("lightbox");
-      const lbImg = document.getElementById("lbImg");
-      function showImg(src){
-        lbImg.src = src;
-        lb.classList.add("open");
-      }
-      document.getElementById("viewCatalogBtn").addEventListener("click", ()=>{
-        const firstImg = document.querySelector("#restaurant img")?.src;
-        if(firstImg) showImg(firstImg);
-      });
-      document.querySelectorAll(".gallery img").forEach(img=>{
-        img.addEventListener("click", ()=>showImg(img.src));
-      });
-      lb.addEventListener("click", ()=>lb.classList.remove("open"));
-    });
+    // --- الكتالوج ---
+    document.getElementById('viewCatalogBtn').onclick = () => {
+      const firstImg = document.querySelector('#restaurant img')?.src;
+      if (firstImg) showImg(firstImg);
+    };
+
+    // --- لايت بوكس ---
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+
+    function showImg(src) {
+      lbImg.src = src;
+      lb.classList.add('open');
+    }
+
+    document.querySelectorAll('.gallery img').forEach(img => img.onclick = () => showImg(img.src));
+    lb.onclick = () => lb.classList.remove('open');
   </script>
-
 </body>
+
 </html>

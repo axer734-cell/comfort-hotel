@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">123
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8" />
@@ -579,25 +579,32 @@
             };
         });
 
-        flatpickr("#mDates", {
-            mode: "range",
-            minDate: "today",
-            locale: "ar",
-            disableMobile: "true",
-            onChange: function(selectedDates) {
-                if (selectedDates.length === 2) {
-                    const diff = selectedDates[1] - selectedDates[0];
-                    const nights = Math.ceil(diff / (1000 * 60 * 60 * 24));
-                    bookingInfo = {
-                        nights,
-                        total: nights * activeRoomPrice,
-                        checkin: selectedDates[0].toLocaleDateString('en-CA'),
-                        checkout: selectedDates[1].toLocaleDateString('en-CA')
-                    };
-                    document.getElementById("mTotalText").textContent = bookingInfo.total + "$ (" + nights + " ليلة)";
-                }
-            }
-        });
+       flatpickr("#mDates", {
+    mode: "range",
+    minDate: "today",
+    locale: "ar",
+    disableMobile: true,   // ✔ بدون علامات اقتباس
+    clickOpens: true,
+    allowInput: false,
+    dateFormat: "Y-m-d",
+    onChange: function(selectedDates) {
+        if (selectedDates.length === 2) {
+            const diff = selectedDates[1] - selectedDates[0];
+            const nights = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+            bookingInfo = {
+                nights: nights,
+                total: nights * activeRoomPrice,
+                checkin: selectedDates[0].toISOString().split("T")[0],
+                checkout: selectedDates[1].toISOString().split("T")[0]
+            };
+
+            document.getElementById("mTotalText").textContent =
+                bookingInfo.total + "$ (" + nights + " ليلة)";
+        }
+    }
+});
+
 
         document.getElementById('sendRoomBooking').onclick = () => {
             const name = document.getElementById("mName").value;

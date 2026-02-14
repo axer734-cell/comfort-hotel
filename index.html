@@ -3,16 +3,11 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Comfort Hotel | فندق كمفورت</title>
 
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- Flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <style>
@@ -27,52 +22,52 @@
         }
 
         * {
-            box-sizing: border-box
-        }
-
-        html,
-        body {
-            height: 100%
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             margin: 0;
-            font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            font-family: 'Cairo', sans-serif;
             background: var(--bg);
             color: var(--dark);
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 16px
+            padding: 0 16px;
         }
 
         main {
-            padding: 48px 0
+            padding: 48px 0;
         }
 
         /* ===== HERO ===== */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
         .hero video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
         }
 
-       .hero {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-    background: #000;
-}
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .45);
+        }
+
         .brand {
             position: absolute;
             top: 18px;
@@ -104,13 +99,7 @@
 
         .brand .t b {
             display: block;
-            font-size: 14px
-        }
-
-        .brand .t span {
-            display: block;
-            font-size: 12px;
-            opacity: .9
+            font-size: 14px;
         }
 
         .hero-content {
@@ -119,55 +108,22 @@
             bottom: 34px;
             z-index: 3;
             color: #fff;
-            max-width: min(720px, 92vw);
         }
 
         .hero-content h1 {
             margin: 0;
-            font-size: 38px;
-            font-weight: 700
+            font-size: clamp(28px, 5vw, 38px);
+            font-weight: 700;
         }
 
-        .hero-content h2 {
-            margin: 8px 0 0;
-            font-size: 18px;
-            font-weight: 400;
-            opacity: .95
-        }
-
-        .hero-content .loc {
-            margin-top: 10px;
-            font-size: 14px;
-            opacity: .95;
-            display: flex;
-            align-items: center;
-            gap: 8px
-        }
-
-        .hero-content .loc i {
-            font-size: 16px
-        }
-
-        /* ===== SECTION HEADERS ===== */
+        /* ===== CARDS & GALLERY ===== */
         .section-title {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin: 0 0 14px;
+            margin-bottom: 14px;
         }
 
-        .section-title h3 {
-            margin: 0;
-            font-size: 22px
-        }
-
-        .section-title p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 13px
-        }
-
-        /* ===== CARD ===== */
         .card {
             background: var(--card);
             border: 1px solid var(--border);
@@ -177,59 +133,35 @@
         }
 
         .card-header {
-            padding: 18px 18px 14px;
+            padding: 18px;
             border-bottom: 1px solid var(--border);
             display: flex;
-            gap: 12px;
-            align-items: flex-start;
             justify-content: space-between;
-        }
-
-        .card-header .info h4 {
-            margin: 0;
-            font-size: 18px
-        }
-
-        .card-header .info .sub {
-            margin-top: 6px;
-            color: var(--muted);
-            font-size: 13px
+            align-items: flex-start;
+            gap: 10px;
         }
 
         .price {
             color: var(--gold);
             font-weight: 700;
             font-size: 16px;
-            white-space: nowrap;
         }
 
-        /* ===== BOOK BUTTON (gold bubble) ===== */
         .book-bubble {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
             padding: 12px 18px;
             border: none;
-            cursor: pointer;
             border-radius: 999px;
             background: linear-gradient(135deg, var(--gold), var(--gold2));
             color: #fff;
             font-weight: 800;
-            font-size: 14px;
-            box-shadow: 0 10px 26px rgba(201, 161, 74, .32);
-            transition: .2s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 20px rgba(201, 161, 74, .2);
+            transition: 0.3s;
         }
 
-        .book-bubble:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 14px 32px rgba(201, 161, 74, .38)
-        }
-
-        .book-bubble i {
-            font-size: 16px
-        }
-
-        /* ===== GALLERY ===== */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -243,13 +175,11 @@
             object-fit: cover;
             border-radius: 14px;
             cursor: zoom-in;
-            transition: transform .28s ease, filter .28s ease, box-shadow .28s ease;
+            transition: 0.3s;
         }
 
         .gallery img:hover {
-            transform: scale(1.03);
-            filter: saturate(1.05) contrast(1.03);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, .16);
+            transform: scale(1.02);
         }
 
         /* ===== SERVICES ===== */
@@ -269,59 +199,12 @@
 
         .service i {
             font-size: 28px;
-            color: var(--gold)
-        }
-
-        .service span {
+            color: var(--gold);
             display: block;
-            margin-top: 8px;
-            font-size: 14px
+            margin-bottom: 8px;
         }
 
-        /* ===== MAP ===== */
-        .map-card {
-            padding: 14px
-        }
-
-        .map-frame {
-            width: 100%;
-            height: 260px;
-            border: 0;
-            border-radius: 14px;
-            overflow: hidden;
-        }
-
-        .map-actions {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
-        }
-
-        .go-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            border-radius: 999px;
-            border: 1px solid rgba(0, 0, 0, .08);
-            background: #111;
-            color: #fff;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .go-btn i {
-            font-size: 16px
-        }
-
-        footer {
-            text-align: center;
-            color: #8c8c8c;
-            font-size: 13px;
-            padding: 28px 16px;
-        }
-
-        /* ===== MODAL ===== */
+        /* ===== MODALS ===== */
         .modal {
             position: fixed;
             inset: 0;
@@ -329,305 +212,154 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 18px;
-            background: rgba(0, 0, 0, .62);
+            background: rgba(0, 0, 0, 0.65);
+            padding: 15px;
+            backdrop-filter: blur(4px);
         }
 
         .modal.open {
-            display: flex
+            display: flex;
         }
 
         .modal-box {
-            width: min(520px, 96vw);
+            width: 100%;
+            max-width: 520px;
             background: #fff;
-            border-radius: 18px;
-            border: 1px solid rgba(0, 0, 0, .08);
-            overflow: hidden;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, .25);
+            border-radius: 20px;
+            max-height: 95vh;
+            overflow-y: auto;
+            position: relative;
         }
 
         .modal-head {
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
+            padding: 16px;
             border-bottom: 1px solid var(--border);
-            background: #fbfbfb;
-        }
-
-        .modal-head .ttl {
             display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .modal-head .ttl b {
-            font-size: 15px
-        }
-
-        .modal-head .ttl span {
-            font-size: 12px;
-            color: var(--muted)
-        }
-
-        .xbtn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 0, 0, .1);
-            background: #fff;
-            cursor: pointer;
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-        }
-
-        .xbtn i {
-            font-size: 18px;
-            color: #444
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 2;
         }
 
         .modal-body {
-            padding: 16px
+            padding: 20px;
         }
 
         .field {
-            margin-bottom: 12px
+            margin-bottom: 15px;
         }
 
         .field label {
             display: block;
-            font-size: 12px;
+            font-size: 13px;
+            font-weight: 700;
             color: #555;
-            margin-bottom: 6px
+            margin-bottom: 6px;
         }
 
         .input,
-        select {
+        select,
+        textarea {
             width: 100%;
             height: 50px;
             border-radius: 12px;
-            border: 1px solid #d6d6d6;
-            padding: 10px 12px;
+            border: 1px solid #ddd;
+            padding: 0 12px;
             font-size: 14px;
-            background: #fff;
             outline: none;
+            font-family: 'Cairo';
+        }
+
+        textarea.input {
+            height: auto;
+            padding: 12px;
         }
 
         .row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px
-        }
-
-        @media (max-width:560px) {
-            .hero-content h1 {
-                font-size: 28px
-            }
-
-            .hero-content h2 {
-                font-size: 15px
-            }
-
-            .row {
-                grid-template-columns: 1fr
-            }
-
-            .gallery img {
-                height: 185px
-            }
-
-            .map-frame {
-                height: 240px
-            }
+            gap: 12px;
         }
 
         .total-line {
-            margin-top: 8px;
-            padding: 12px 12px;
-            border-radius: 14px;
+            padding: 15px;
             background: #fafafa;
-            border: 1px dashed rgba(0, 0, 0, .12);
-            font-weight: 700;
-            color: #333;
+            border-radius: 14px;
+            border: 1px dashed var(--gold);
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+
+        /* Payment Styles */
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
+            margin-top: 5px;
         }
 
-        .total-line .gold {
-            color: var(--gold)
+        .pay-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.2s;
         }
 
-        .modal-actions {
-            padding: 14px 16px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: flex-start;
-            background: #fbfbfb;
+        .pay-card.active {
+            border-color: var(--gold);
+            background: #fffcf5;
+            color: var(--gold);
+            box-shadow: 0 4px 10px rgba(201, 161, 74, 0.1);
         }
 
         .send-btn {
             width: 100%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 18px;
+            padding: 16px;
             border: none;
-            cursor: pointer;
-            border-radius: 999px;
             background: linear-gradient(135deg, var(--gold), var(--gold2));
             color: #fff;
-            font-weight: 900;
-            font-size: 15px;
-            box-shadow: 0 10px 26px rgba(201, 161, 74, .30);
-            transition: .2s ease;
+            border-radius: 999px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 16px;
         }
 
-        .send-btn:hover {
-            transform: translateY(-1px)
-        }
-
-        .send-btn i {
-            font-size: 18px
-        }
-
-        /* ===== LIGHTBOX (Zoom only, no drag, no wrap, arrows hide at ends, preload) ===== */
+        /* ===== LIGHTBOX ===== */
         .lightbox {
             position: fixed;
             inset: 0;
-            z-index: 9998;
-            background: rgba(0, 0, 0, .86);
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.9);
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 18px;
         }
 
         .lightbox.open {
-            display: flex
-        }
-
-        .lb-inner {
-            width: min(1100px, 94vw);
-            height: min(720px, 86vh);
-            position: relative;
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lb-canvas {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, .03);
-            border: 1px solid rgba(255, 255, 255, .12);
-            position: relative;
         }
 
         .lb-img {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 100%;
-            height: 100%;
+            max-width: 90%;
+            max-height: 80%;
             object-fit: contain;
-            transform: translate(-50%, -50%) scale(1);
-            transform-origin: center;
-            user-select: none;
-            -webkit-user-drag: none;
-            cursor: default;
         }
 
-        .lb-btn {
-            position: absolute;
-            top: 14px;
-            width: 42px;
-            height: 42px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, .18);
-            background: rgba(255, 255, 255, .12);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-        }
+        @media (max-width: 500px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
 
-        .lb-close {
-            right: 14px
-        }
-
-        .lb-zoom-in {
-            left: 14px
-        }
-
-        .lb-zoom-out {
-            left: 62px
-        }
-
-        .lb-reset {
-            left: 110px
-        }
-
-        .lb-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 46px;
-            height: 46px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, .18);
-            background: rgba(255, 255, 255, .12);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .lb-prev {
-            right: 14px
-        }
-
-        .lb-next {
-            left: 14px
-        }
-
-        .lb-hidden {
-            display: none !important;
-        }
-
-        .lb-loading {
-            position: absolute;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lb-loading.show {
-            display: flex
-        }
-
-        .lb-spinner {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, .25);
-            border-top-color: #fff;
-            animation: spin .9s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg)
+            .payment-options {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -635,21 +367,14 @@
 
 <body>
 
-    <!-- 1) HERO (واجهة) -->
-    <section class="hero" id="hero">
-        <video autoplay muted loop playsinline preload="metadata">
-
+    <section class="hero">
+        <video autoplay muted loop playsinline>
             <source src="comfort.mp4" type="video/mp4">
         </video>
-
         <div class="brand">
-            <img src="comfotLOGO_11zon.jpg" alt="Comfort Hotel Logo">
-            <div class="t">
-                <b>Comfort Hotel</b>
-                <span>فندق كمفورت</span>
-            </div>
+            <img src="comfotLOGO_11zon.jpg" alt="Logo">
+            <div class="t"><b>Comfort Hotel</b><span>فندق كمفورت</span></div>
         </div>
-
         <div class="hero-content">
             <h1>فندق كمفورت</h1>
             <h2>Comfort Hotel – Djibouti City Center</h2>
@@ -659,616 +384,265 @@
 
     <main>
         <div class="container">
-
-            <!-- 2) الغرف (غرفتين فقط) -->
             <section id="rooms">
                 <div class="section-title">
                     <h3>الغرف</h3>
                     <p>السعر: 75$ لليلة</p>
                 </div>
 
-                <!-- غرفة 1 -->
                 <div class="card" data-room-name="غرفة ديلوكس – سرير ملكي" data-room-price="75">
                     <div class="card-header">
                         <div class="info">
                             <h4>غرفة ديلوكس – سرير ملكي</h4>
-                            <div class="sub">مناسبة للأفراد أو الأزواج – راحة وهدوء</div>
+                            <p style="margin:4px 0; color:var(--muted); font-size:13px">مناسبة للأفراد أو الأزواج – راحة وهدوء</p>
                         </div>
-                        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
-                            <div class="price">75$ / الليلة</div>
-                            <button class="book-bubble js-open-book" type="button" aria-label="حجز الغرفة">
-                                <i class="bi bi-calendar2-check"></i> احجز الآن
-                            </button>
-                        </div>
+                        <button class="book-bubble js-open-room"><i class="bi bi-calendar2-check"></i> احجز الآن</button>
                     </div>
-
                     <div class="gallery">
-                        <img src="room1.jpg" alt="Room photo">
-                        <img src="room2.jpg" alt="Room photo">
-                        <img src="room-3.jpg" alt="Room photo">
-                        <img src="room-4.jpg" alt="Room photo">
+                        <img src="room1.jpg"> <img src="room2.jpg"> <img src="room-3.jpg"> <img src="room-4.jpg">
                     </div>
                 </div>
 
-                <!-- غرفة 2 -->
-                <div class="card" data-room-name="غرفة ديلوكس – سريرين (شخصين)" data-room-price="75">
+                <div class="card" data-room-name="غرفة ديلوكس – سريرين" data-room-price="75">
                     <div class="card-header">
                         <div class="info">
-                            <h4>غرفة ديلوكس – سريرين (شخصين)</h4>
-                            <div class="sub">مناسبة للأصدقاء أو العائلة</div>
+                            <h4>غرفة ديلوكس – سريرين</h4>
+                            <p style="margin:4px 0; color:var(--muted); font-size:13px">مناسبة للأصدقاء أو العائلة</p>
                         </div>
-                        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
-                            <div class="price">75$ / الليلة</div>
-                            <button class="book-bubble js-open-book" type="button" aria-label="حجز الغرفة">
-                                <i class="bi bi-calendar2-check"></i> احجز الآن
-                            </button>
-                        </div>
+                        <button class="book-bubble js-open-room"><i class="bi bi-calendar2-check"></i> احجز الآن</button>
                     </div>
-
                     <div class="gallery">
-                        <img src="room-photo1.jpg" alt="Room photo">
-                        <img src="room-photo2.jpg" alt="Room photo">
-                        <img src="room-photo3.jpg" alt="Room photo">
-                        <img src="room-photo4.jpg" alt="Room photo">
+                        <img src="room-photo1.jpg"> <img src="room-photo2.jpg"> <img src="room-photo3.jpg"> <img src="room-photo4.jpg">
                     </div>
-
                 </div>
             </section>
 
-            <!-- 3) المطعم (مستقل) -->
-            <section id="restaurant" style="margin-top:36px">
+            <section id="restaurant" style="margin-top:40px">
                 <div class="section-title">
                     <h3>المطعم</h3>
-                    <p>حجز محلي (جيبوتي)</p>
+                    <p>حجز محلي جيبوتي</p>
                 </div>
-
                 <div class="card">
                     <div class="card-header">
                         <div class="info">
                             <h4>مطعم الفندق</h4>
-                            <div class="sub">حجز طاولة + طلب الوجبات عبر واتساب</div>
+                            <p style="margin:4px 0; color:var(--muted); font-size:13px">أشهى المأكولات الجيبوتية واليمنية</p>
                         </div>
-                        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
-                            <div class="price">حجز أونلاين محلي</div>
-                            <button class="book-bubble" id="restaurantBookBtn" type="button">
-                                <i class="bi bi-whatsapp"></i> حجز المطعم
-                            </button>
-                        </div>
+                        <button class="book-bubble" id="openRestBtn"><i class="bi bi-whatsapp"></i> حجز طاولة / وجبات</button>
                     </div>
-
-                    <!-- استخدم صور موجودة عندك لضمان الظهور (بدل صور مطعم غير موجودة) -->
                     <div class="gallery">
-                        <img src="Restaurant1.jpg" alt="Restaurant photo">
-                        <img src="Restaurant2.jpg" alt="Restaurant photo">
-                        <img src="Restaurant3.jpg" alt="Restaurant photo">
-                        <img src="Restaurant4.jpg" alt="Restaurant photo">
+                        <img src="Restaurant1.jpg"> <img src="Restaurant2.jpg"> <img src="Restaurant3.jpg"> <img src="Restaurant4.jpg">
                     </div>
-
                 </div>
             </section>
 
-            <!-- 4) الخدمات (أيقونات فقط) -->
-            <section id="services" style="margin-top:36px">
-                <div class="section-title">
-                    <h3>الخدمات</h3>
-                    <p>أيقونات فقط</p>
-                </div>
-
+            <section style="margin-top:40px">
                 <div class="services">
                     <div class="service"><i class="bi bi-wifi"></i><span>Wi-Fi مجاني</span></div>
                     <div class="service"><i class="bi bi-person-workspace"></i><span>استقبال 24 ساعة</span></div>
-                    <div class="service">
-                        <i>
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="service"><i><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8">
                                 <rect x="3" y="2" width="18" height="20" rx="2"></rect>
                                 <circle cx="12" cy="13" r="4"></circle>
-                                <line x1="7" y1="6" x2="7.01" y2="6"></line>
-                                <line x1="10" y1="6" x2="17" y2="6"></line>
-                            </svg>
-                        </i>
-                        <span>مغسلة</span>
-                    </div>
-
-
-                    <div class="service">
-                        <i>
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- جسم الكاوية -->
+                                <line x1="7" y1="6" x2="17" y2="6"></line>
+                            </svg></i><span>مغسلة</span></div>
+                    <div class="service"><i><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8">
                                 <path d="M4 14h16l-2 5H6l-2-5Z"></path>
                                 <path d="M8 10c0-2 2-3 4-3s4 1 4 3"></path>
-
-                                <!-- بخار -->
-                                <path d="M9 18c-1 1-1 2 0 3"></path>
-                                <path d="M12 18c-1 1-1 2 0 3"></path>
-                                <path d="M15 18c-1 1-1 2 0 3"></path>
-                            </svg>
-                        </i>
-                        <span>كاوية</span>
-                    </div>
-
-
+                            </svg></i><span>كاوية</span></div>
                 </div>
             </section>
 
-            <!-- 5) الموقع (الخريطة في الأسفل) -->
-            <section id="map" style="margin-top:36px">
-                <div class="section-title">
-                    <h3>الموقع</h3>
-                    <p>الذهاب إلى العنوان</p>
-                </div>
-
-                <div class="card map-card">
-                    <iframe class="map-frame" src="https://www.google.com/maps?q=Comfort%20Hotel%20Djibouti&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-                    <div class="map-actions">
-                        <a class="go-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/place/%D9%81%D9%86%D8%AF%D9%82+%D9%83%D9%85%D9%81%D9%88%D8%B1%D8%AA+COMFORT+HOTEL%D8%8C+Down+Town+Center%D8%8C+Palace+Rainbow%E2%80%AD/@11.5907239,43.1456855,17z/data=!4m6!3m5!1s0x1623012a5b7ec1af:0x3435f3b9e95d68aa!8m2!3d11.5907239!4d43.1456855!16s%2Fg%2F11ykdrt0yd?source=lnms&g_ep=Eg1tbF8yMDI2MDEyOF8xIOC7DCoASAJQAQ%3D%3D">
-                            <i class="bi bi-geo-alt"></i> الذهاب إلى الموقع
+            <section style="margin-top:40px">
+                <div class="card" style="padding:14px">
+                    <iframe style="width:100%; height:260px; border:0; border-radius:14px;" src="https://www.google.com/maps/embed?pb=..."></iframe>
+                    <div style="display:flex; justify-content:flex-end; margin-top:12px">
+                        <a href="#" target="_blank" style="background:#111; color:#fff; padding:12px 20px; border-radius:999px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:8px;">
+                            <i class="bi bi-geo-alt"></i> الذهاب للموقع
                         </a>
                     </div>
                 </div>
             </section>
-
         </div>
     </main>
 
-    <footer>© 2026 Comfort Hotel – Djibouti</footer>
+    <footer style="text-align:center; padding:30px; color:var(--muted); font-size:13px;">© 2026 Comfort Hotel – Djibouti</footer>
 
-    <!-- ===== BOOKING MODAL (نموذج حجز الغرف) ===== -->
-    <div class="modal" id="bookingModal" aria-hidden="true">
-        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="roomModal">
+        <div class="modal-box">
             <div class="modal-head">
-                <div class="ttl">
-                    <b id="modalTitle">نموذج الحجز</b>
-                    <span id="modalSub">أدخل بياناتك ثم أرسل عبر واتساب</span>
-                </div>
-                <button class="xbtn" id="modalClose" type="button" aria-label="إغلاق">
-                    <i class="bi bi-x-lg"></i>
-                </button>
+                <b>نموذج حجز الغرف</b>
+                <button onclick="closeModal('roomModal')" style="border:none; background:#eee; border-radius:50%; width:32px; height:32px; cursor:pointer;">×</button>
             </div>
-
             <div class="modal-body">
-                <div class="field">
-                    <label>اسم الغرفة</label>
-                    <input class="input" id="mRoomName" readonly>
-                </div>
-
-
+                <div class="field"><label>الغرفة المختارة</label><input class="input" id="mRoomName" readonly style="background:#f9f9f9"></div>
                 <div class="row">
-                    <div class="field">
-                        <label>الاسم</label>
-                        <input class="input" id="mName" placeholder="الاسم الكامل">
-                    </div>
-                    <div class="field">
-                        <label>رقم الجواز</label>
-                        <input class="input" id="mPassport" placeholder="Passport No.">
-                    </div>
+                    <div class="field"><label>الاسم الكامل</label><input class="input" id="mName" placeholder="سيتم حفظ اسمك تلقائياً"></div>
+                    <div class="field"><label>رقم الجواز</label><input class="input" id="mPassport" placeholder="رقم الجواز"></div>
                 </div>
-
                 <div class="row">
                     <div class="field">
                         <label>الدولة</label>
                         <select id="mCountry" class="input">
-                            <option value="" data-code="">اختر الدولة</option>
-                            <option value="Djibouti" data-code="+253">Djibouti (+253)</option>
-                            <option value="Saudi Arabia" data-code="+966">Saudi Arabia (+966)</option>
-                            <option value="United Arab Emirates" data-code="+971">UAE (+971)</option>
-                            <option value="Qatar" data-code="+974">Qatar (+974)</option>
-                            <option value="Yemen" data-code="+967">Yemen (+967)</option>
-                            <option value="Egypt" data-code="+20">Egypt (+20)</option>
-                            <option value="France" data-code="+33">France (+33)</option>
-                            <option value="Ethiopia" data-code="+251">Ethiopia (+251)</option>
-                            <option value="Somalia" data-code="+252">Somalia (+252)</option>
-                            <option value="Kenya" data-code="+254">Kenya (+254)</option>
-                            <option value="Turkey" data-code="+90">Turkey (+90)</option>
-                            <option value="United Kingdom" data-code="+44">UK (+44)</option>
-                            <option value="United States" data-code="+1">USA (+1)</option>
-                            <option value="Other" data-code="">Other</option>
+                            <option value="Djibouti">Djibouti (+253)</option>
+                            <option value="Yemen">Yemen (+967)</option>
+                            <option value="Saudi Arabia">Saudi Arabia (+966)</option>
+                            <option value="Ethiopia">Ethiopia (+251)</option>
+                            <option value="Other">أخرى</option>
                         </select>
                     </div>
+                    <div class="field"><label>رقم الهاتف</label><input class="input" id="mPhone" type="tel" placeholder="رقم التواصل"></div>
+                </div>
+                <div class="field"><label>التواريخ (وصول - مغادرة)</label><input class="input" id="mDates" readonly placeholder="حدد فترة الإقامة"></div>
+                <div class="total-line"><span>الإجمالي المقدر:</span><span id="mTotalText" style="color:var(--gold)">—</span></div>
+                <button class="send-btn" id="sendRoomBooking"><i class="bi bi-whatsapp"></i> إرسال الحجز عبر واتساب</button>
+            </div>
+        </div>
+    </div>
 
-                    <div class="field">
-                        <label>رقم الهاتف (اتصال أو واتساب)</label>
-                        <input class="input" id="mPhone" inputmode="tel" placeholder="+253 7708843">
+    <div class="modal" id="restModal">
+        <div class="modal-box">
+            <div class="modal-head">
+                <b>طلب المطعم (حجز محلي)</b>
+                <button onclick="closeModal('restModal')" style="border:none; background:#eee; border-radius:50%; width:32px; height:32px; cursor:pointer;">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="field">
+                    <label>عدد الأشخاص</label>
+                    <select class="input" id="rPeople">
+                        <option value="1">شخص واحد</option>
+                        <option value="2">شخصين</option>
+                        <option value="3">3 أشخاص</option>
+                        <option value="4">4 أشخاص</option>
+                        <option value="5+">عائلة (5+)</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>الوجبات المطلوبة</label>
+                    <textarea class="input" id="rOrders" rows="3" placeholder="مثلاً: 2 مندي، 1 سمك، ماء..."></textarea>
+                    <button id="viewCatalogBtn" style="background:#f0f0f0; border:1px dashed var(--gold); color:var(--gold); padding:10px; border-radius:10px; width:100%; cursor:pointer; font-weight:700; margin-top:8px;">
+                        <i class="bi bi-book"></i> عرض الكتالوج (قائمة الطعام)
+                    </button>
+                </div>
+                <div class="field">
+                    <label>طريقة الدفع المحلية</label>
+                    <div class="payment-options">
+                        <div class="pay-card active" data-pay="Waafi">Waafi</div>
+                        <div class="pay-card" data-pay="Saba Cash">Saba</div>
+                        <div class="pay-card" data-pay="CAC Bay">CAC Bay</div>
                     </div>
                 </div>
-
-                <div class="field">
-                    <label>تسجيل الوصول — المغادرة</label>
-                   <input class="input" id="mDates" type="text" inputmode="none" readonly placeholder="اختر التواريخ">
-
-                </div>
-
-                <div class="total-line" id="mTotalLine">
-                    <span>الإجمالي</span>
-                    <span class="gold" id="mTotalText">—</span>
-                </div>
-            </div>
-
-            <div class="modal-actions">
-                <button class="send-btn" id="mSendBtn" type="button">
-                    <i class="bi bi-whatsapp"></i> إرسال الحجز إلى واتساب
-                </button>
+                <button class="send-btn" id="sendRestBooking"><i class="bi bi-whatsapp"></i> تأكيد الطلب عبر واتساب</button>
             </div>
         </div>
     </div>
 
-    <!-- ===== LIGHTBOX ===== -->
     <div class="lightbox" id="lightbox">
-        <div class="lb-inner">
-            <div class="lb-canvas" id="lbCanvas">
-                <img class="lb-img" id="lbImg" src="" alt="">
-                <div class="lb-loading" id="lbLoading">
-                    <div class="lb-spinner"></div>
-                </div>
-            </div>
-
-            <button class="lb-btn lb-close" id="lbClose" type="button" title="إغلاق"><i class="bi bi-x-lg"></i></button>
-
-            <button class="lb-btn lb-zoom-in" id="lbZoomIn" type="button" title="تكبير"><i class="bi bi-zoom-in"></i></button>
-            <button class="lb-btn lb-zoom-out" id="lbZoomOut" type="button" title="تصغير"><i class="bi bi-zoom-out"></i></button>
-            <button class="lb-btn lb-reset" id="lbReset" type="button" title="إعادة ضبط"><i class="bi bi-arrow-counterclockwise"></i></button>
-
-            <button class="lb-nav lb-prev" id="lbPrev" type="button" title="السابق"><i class="bi bi-chevron-right"></i></button>
-            <button class="lb-nav lb-next" id="lbNext" type="button" title="التالي"><i class="bi bi-chevron-left"></i></button>
-        </div>
+        <img class="lb-img" id="lbImg">
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ar.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.addEventListener("submit", e => e.preventDefault());
+        const WHATSAPP_NUMBER = "25377088843"; // رقم الفندق الموحد
+        let activeRoomPrice = 75;
+        let bookingInfo = {
+            nights: 0,
+            total: 0,
+            checkin: "",
+            checkout: ""
+        };
 
-            /* ========= SETTINGS ========= */
-            const HOTEL_WHATSAPP = "25377088843"; // <-- ضع رقم الفندق هنا بدون +
-            const REST_WHATSAPP = "25377088843"; // <-- ضع رقم المطعم (محلي جيبوتي) هنا بدون +
-
-            /* ========= BOOKING MODAL ========= */
-            const bookingModal = document.getElementById("bookingModal");
-            const modalClose = document.getElementById("modalClose");
-            const mRoomName = document.getElementById("mRoomName");
-            const mName = document.getElementById("mName");
-            const mPassport = document.getElementById("mPassport");
-            const mCountry = document.getElementById("mCountry");
-            const mPhone = document.getElementById("mPhone");
-            const mDates = document.getElementById("mDates");
-            const mTotalText = document.getElementById("mTotalText");
-            const mSendBtn = document.getElementById("mSendBtn");
-
-            let activeRoom = {
-                name: "",
-                price: 75
-            };
-            let bookingData = {
-                checkin: "",
-                checkout: "",
-                nights: 0,
-                total: 0
-            };
-
-            function openBooking(roomName, price) {
-                activeRoom = {
-                    name: roomName,
-                    price: Number(price || 75)
-                };
-                mRoomName.value = activeRoom.name;
-                // لا نمسح بيانات المستخدم لو فتح/سكر، فقط نعيد التواريخ والحساب
-                mDates.value = "";
-                bookingData = {
-                    checkin: "",
-                    checkout: "",
-                    nights: 0,
-                    total: 0
-                };
-                mTotalText.textContent = "—";
-                bookingModal.classList.add("open");
-                bookingModal.setAttribute("aria-hidden", "false");
-            }
-
-            function closeBooking() {
-                bookingModal.classList.remove("open");
-                bookingModal.setAttribute("aria-hidden", "true");
-            }
-
-            // Close handlers
-            modalClose.addEventListener("click", closeBooking);
-           bookingModal.addEventListener("click", (e) => {
-    if (e.target === bookingModal) {
-        closeBooking();
-    }
-});
-
-
-            window.addEventListener("keydown", (e) => {
-                if (e.key === "Escape") {
-                    if (bookingModal.classList.contains("open")) closeBooking();
-                    if (lightbox.classList.contains("open")) closeLightbox();
-                }
-            });
-
-            // Attach open buttons (no deletion, fixed order)
-            document.querySelectorAll(".card[data-room-name] .js-open-book").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const card = btn.closest(".card");
-                    openBooking(card.dataset.roomName, card.dataset.roomPrice);
-                });
-            });
-
-            // Country -> auto dial code in phone field
-            function normalizePhoneWithCode(code) {
-                const raw = (mPhone.value || "").trim();
-                const existing = raw.match(/^\+\d+\s*/);
-                const rest = raw.replace(/^\+\d+\s*/, "").trim();
-                if (code) {
-                    mPhone.value = code + " " + (rest || "");
-                    // ضع المؤشر بعد المفتاح
-                    setTimeout(() => {
-                        mPhone.focus();
-                        const pos = mPhone.value.length;
-                        mPhone.setSelectionRange(pos, pos);
-                    }, 0);
-                }
-            }
-            mCountry.addEventListener("change", () => {
-                const opt = mCountry.options[mCountry.selectedIndex];
-                const code = opt?.dataset?.code || "";
-                normalizePhoneWithCode(code);
-            });
-
-            // Flatpickr inside modal (Arabic, range, prevent past)
-
-            if (typeof flatpickr !== "undefined") {
-
-              
-
-              flatpickr(mDates, {
-    static: true,
-    mode: "range",
-    minDate: "today",
-    dateFormat: "Y-m-d",
-    showMonths: 1,
-    disableMobile: true,   // ← مهم جداً
-    clickOpens: true,
-    allowInput: false,
-    locale: "ar",
-
-
-    onChange: (dates) => {
-        if (dates.length === 2) {
-            const nights = Math.round((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
-            const total = nights * activeRoom.price;
-
-            bookingData = {
-                checkin: dates[0].toISOString().split("T")[0],
-                checkout: dates[1].toISOString().split("T")[0],
-                nights,
-                total
-            };
-
-            mTotalText.textContent = `${total}$ ( ${nights} ليلة )`;
-        } else {
-            bookingData = { checkin:"", checkout:"", nights:0, total:0 };
-            mTotalText.textContent = "—";
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
         }
-    }
-});
 
-            }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+        }
 
-            // Send to WhatsApp
-           mSendBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-                const name = (mName.value || "").trim();
-                const passport = (mPassport.value || "").trim();
-                const country = (mCountry.value || "").trim();
-                const phone = (mPhone.value || "").trim();
-
-                if (!name || !passport || !country || !phone) {
-                    alert("يرجى تعبئة: الاسم، رقم الجواز، الدولة، رقم الهاتف.");
-                    return;
-                }
-                if (!bookingData.checkin || !bookingData.checkout || bookingData.nights <= 0) {
-                    alert("يرجى اختيار تاريخ الوصول والمغادرة (تواريخ مستقبلية).");
-                    return;
-                }
-
-                const msg =
-                    `حجز غرفة – Comfort Hotel / فندق كمفورت
-الغرفة: ${activeRoom.name}
-السعر: ${activeRoom.price}$ / الليلة
-
-الاسم: ${name}
-رقم الجواز: ${passport}
-الدولة: ${country}
-الهاتف: ${phone}
-
-الوصول: ${bookingData.checkin}
-المغادرة: ${bookingData.checkout}
-عدد الليالي: ${bookingData.nights}
-الإجمالي: ${bookingData.total}$`;
-const url = `https://wa.me/${HOTEL_WHATSAPP}?text=${encodeURIComponent(msg)}`;
-
-
-const a = document.createElement("a");
-a.href = url;
-a.target = "_self";   // مهم جداً للأندرويد
-document.body.appendChild(a);
-a.click();
-a.remove();
-
-
-                closeBooking();
-            });
-
-            /* ========= RESTAURANT WHATSAPP ========= */
-            const restaurantBookBtn = document.getElementById("restaurantBookBtn");
-            restaurantBookBtn.addEventListener("click", () => {
-                const msg = "مرحبا، أرغب بحجز طاولة في مطعم فندق كمفورت (حجز محلي – جيبوتي).";
-           const url = `https://wa.me/${REST_WHATSAPP}?text=${encodeURIComponent(msg)}`;
-
-const a = document.createElement("a");
-a.href = url;
-a.target = "_self";
-document.body.appendChild(a);
-a.click();
-a.remove();
-
-
-            });
-
-            /* ========= LIGHTBOX (Zoom only, no drag, no wrap, arrows hide, preload) ========= */
-            const lightbox = document.getElementById("lightbox");
-            const lbImg = document.getElementById("lbImg");
-            const lbCanvas = document.getElementById("lbCanvas");
-            const lbLoading = document.getElementById("lbLoading");
-            const lbClose = document.getElementById("lbClose");
-            const lbZoomIn = document.getElementById("lbZoomIn");
-            const lbZoomOut = document.getElementById("lbZoomOut");
-            const lbReset = document.getElementById("lbReset");
-            const lbPrev = document.getElementById("lbPrev");
-            const lbNext = document.getElementById("lbNext");
-
-            let imgs = [];
-            let index = 0;
-            let scale = 1;
-            let isLoading = false;
-
-            function collectImages() {
-                imgs = Array.from(document.querySelectorAll(".gallery img"));
-                imgs.forEach((im, i) => {
-                    im.dataset.lbIndex = String(i);
-                    im.addEventListener("click", () => openLightbox(i));
-                });
-            }
-            collectImages();
-
-            function applyZoom() {
-                lbImg.style.transform = `translate(-50%,-50%) scale(${scale})`;
-            }
-
-            function resetZoom() {
-                scale = 1;
-                applyZoom();
-            }
-
-            function updateArrows() {
-                lbPrev.classList.toggle("lb-hidden", index === 0);
-                lbNext.classList.toggle("lb-hidden", index === imgs.length - 1);
-            }
-
-            function setImage(i) {
-                if (i < 0 || i > imgs.length - 1) return;
-                isLoading = true;
-                lbLoading.classList.add("show");
-
-                const src = imgs[i].getAttribute("src");
-                const pre = new Image();
-                pre.onload = () => {
-                    index = i;
-                    lbImg.src = src;
-                    resetZoom();
-                    updateArrows();
-                    lbLoading.classList.remove("show");
-                    isLoading = false;
-                };
-                pre.onerror = () => {
-                    lbLoading.classList.remove("show");
-                    isLoading = false;
-                };
-                pre.src = src;
-            }
-
-            function openLightbox(i) {
-                lightbox.classList.add("open");
-                setImage(i);
-            }
-
-            function closeLightbox() {
-                lightbox.classList.remove("open");
-                lbImg.src = "";
-                lbLoading.classList.remove("show");
-                isLoading = false;
-                scale = 1;
-            }
-
-            function prev() {
-                if (isLoading) return;
-                if (index === 0) return;
-                setImage(index - 1);
-            }
-
-            function next() {
-                if (isLoading) return;
-                if (index === imgs.length - 1) return;
-                setImage(index + 1);
-            }
-
-            lbClose.addEventListener("click", closeLightbox);
-            lightbox.addEventListener("click", (e) => {
-                if (e.target === lightbox) closeLightbox();
-            });
-
-            lbPrev.addEventListener("click", prev);
-            lbNext.addEventListener("click", next);
-
-            lbZoomIn.addEventListener("click", () => {
-                scale = Math.min(4, scale + 0.2);
-                applyZoom();
-            });
-            lbZoomOut.addEventListener("click", () => {
-                scale = Math.max(1, scale - 0.2);
-                applyZoom();
-            });
-            lbReset.addEventListener("click", resetZoom);
-
-            // Wheel zoom (no drag)
-            lbCanvas.addEventListener("wheel", (e) => {
-                if (!lightbox.classList.contains("open")) return;
-                e.preventDefault();
-                const delta = Math.sign(e.deltaY);
-                scale = delta > 0 ? Math.max(1, scale - 0.15) : Math.min(4, scale + 0.15);
-                applyZoom();
-            }, {
-                passive: false
-            });
-
-            // Prevent drag
-            lbImg.addEventListener("dragstart", (e) => e.preventDefault());
-            lbImg.addEventListener("mousedown", (e) => e.preventDefault());
-
-            // Keyboard arrows (no wrap)
-            window.addEventListener("keydown", (e) => {
-                if (!lightbox.classList.contains("open")) return;
-                if (e.key === "ArrowRight") prev(); // RTL
-                if (e.key === "ArrowLeft") next(); // RTL
-            });
-
-            // Simple swipe (no wrap, only when zoom=1)
-            let swipeStartX = null;
-            lbCanvas.addEventListener("touchstart", (e) => {
-                if (!lightbox.classList.contains("open")) return;
-                if (e.touches.length === 1) swipeStartX = e.touches[0].clientX;
-            }, {
-                passive: true
-            });
-
-            lbCanvas.addEventListener("touchend", (e) => {
-                if (swipeStartX === null) return;
-                const endX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : swipeStartX;
-                const diff = endX - swipeStartX;
-                swipeStartX = null;
-                if (scale !== 1) return;
-                if (Math.abs(diff) > 60) {
-                    if (diff > 0) prev();
-                    else next();
-                }
-            }, {
-                passive: true
-            });
+        // --- ميزة حفظ البيانات تلقائياً ---
+        const userFields = ['mName', 'mPassport', 'mPhone', 'mCountry'];
+        userFields.forEach(id => {
+            const savedValue = localStorage.getItem(id);
+            if (savedValue) document.getElementById(id).value = savedValue;
+            document.getElementById(id).addEventListener('input', (e) => localStorage.setItem(id, e.target.value));
         });
+
+        // --- حجز الغرف ---
+        document.querySelectorAll(".js-open-room").forEach(btn => {
+            btn.onclick = () => {
+                const card = btn.closest(".card");
+                document.getElementById("mRoomName").value = card.dataset.roomName;
+                activeRoomPrice = parseInt(card.dataset.roomPrice);
+                openModal('roomModal');
+            };
+        });
+
+        flatpickr("#mDates", {
+            mode: "range",
+            minDate: "today",
+            locale: "ar",
+            disableMobile: "true",
+            onChange: function(selectedDates) {
+                if (selectedDates.length === 2) {
+                    const diff = selectedDates[1] - selectedDates[0];
+                    const nights = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                    bookingInfo = {
+                        nights,
+                        total: nights * activeRoomPrice,
+                        checkin: selectedDates[0].toLocaleDateString('en-CA'),
+                        checkout: selectedDates[1].toLocaleDateString('en-CA')
+                    };
+                    document.getElementById("mTotalText").textContent = bookingInfo.total + "$ (" + nights + " ليلة)";
+                }
+            }
+        });
+
+        document.getElementById('sendRoomBooking').onclick = () => {
+            const name = document.getElementById("mName").value;
+            const phone = document.getElementById("mPhone").value;
+            if (!name || !phone || !bookingInfo.checkin) return alert("يرجى إكمال الاسم والتواريخ");
+
+            const text = `*حجز غرفة جديد - Comfort Hotel*\n--------------------------\nالاسم: ${name}\nالهاتف: ${phone}\nالدولة: ${document.getElementById("mCountry").value}\nالجواز: ${document.getElementById("mPassport").value}\n\nالغرفة: ${document.getElementById("mRoomName").value}\nالوصول: ${bookingInfo.checkin}\nالمغادرة: ${bookingInfo.checkout}\nالمدة: ${bookingInfo.nights} ليالي\nالإجمالي: ${bookingInfo.total}$`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`);
+        };
+
+        // --- حجز المطعم ---
+        document.getElementById('openRestBtn').onclick = () => openModal('restModal');
+
+        document.querySelectorAll('.pay-card').forEach(card => {
+            card.onclick = () => {
+                document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            };
+        });
+
+        document.getElementById('sendRestBooking').onclick = () => {
+            const orders = document.getElementById('rOrders').value;
+            const payment = document.querySelector('.pay-card.active').innerText;
+            if (!orders) return alert("يرجى كتابة الوجبات");
+
+            const text = `*طلب مطعم (محلي) - Comfort Hotel*\n--------------------------\nعدد الأشخاص: ${document.getElementById('rPeople').value}\nالوجبات: ${orders}\nطريقة الدفع: ${payment}`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`);
+        };
+
+        // الكتالوج (يعرض صورة المطعم الأولى كمثال)
+        document.getElementById('viewCatalogBtn').onclick = () => {
+            const firstImg = document.querySelector('#restaurant img').src;
+            showImg(firstImg);
+        };
+
+        // --- لايت بوكس (عرض الصور) ---
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImg');
+
+        function showImg(src) {
+            lbImg.src = src;
+            lb.classList.add('open');
+        }
+        document.querySelectorAll('.gallery img').forEach(img => img.onclick = () => showImg(img.src));
+        lb.onclick = () => lb.classList.remove('open');
     </script>
 </body>
 
